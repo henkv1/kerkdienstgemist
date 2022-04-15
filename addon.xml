@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<addon id="plugin.video.kerkdienstgemist"
+version="0.0.1"
+name="Kerkdienstgemist.nl Kodi Video Plugin"
+provider-name="Henk V">
+<requires>
+  <import addon="xbmc.python" version="3.0.0"/>
+  <import addon="script.module.requests" version="2.25.1"/>
+</requires>
+<extension point="xbmc.python.pluginsource" library="main.py">
+  <provides>video</provides>
+</extension>
+<extension point="xbmc.addon.metadata">
+  <summary lang="en">Kerkdienst Gemist Plugin</summary>
+  <description lang="en_GB">Kijk uitzendingen van kerkdienstgemist.nl</description>
+  <disclaimer lang="en_GB">Alle rechten zijn voorbehouden aan kerkdienstgemist.nl en haar leden</disclaimer>
+  <assets>
+    <icon>icon.png</icon>
+  </assets>
+</extension>
+</addon>
