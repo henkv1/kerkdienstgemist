@@ -9,6 +9,7 @@ import xbmcplugin
 import requests
 import json
 import datetime
+from bs4 import BeautifulSoup
 
 from requests.auth import HTTPBasicAuth
 # Get the plugin url in plugin:// notation.
@@ -146,6 +147,8 @@ def list_videos(category):
                         title2 = result3['data'][pos]['attributes']['start_at']
                         if datum == title2:
                             title = result3['data'][pos]['attributes']['title']
+                            description = result3['data'][pos]['attributes']['description']
+                            description2 = BeautifulSoup(description)
 
                     #for video in videos:
                     # Create a list item with a text label and a thumbnail image.
@@ -155,7 +158,8 @@ def list_videos(category):
                     dt = datetime.datetime.fromisoformat(datum)
                     datum2 = dt.strftime('%Y-%m-%d %H:%M')
                     list_item.setInfo('video', {'title': datum2 + ' - ' + title,
-                                                'mediatype': 'video'})
+                                                'mediatype': 'video',
+                                                'plot' : description2.get_text()})
                     # Set graphics (thumbnail, fanart, banner, poster, landscape etc.) for the list item.
                     # Here we use the same image for all items for simplicity's sake.
                     # In a real-life plugin you need to set each image accordingly.
@@ -198,7 +202,8 @@ def list_videos_live(category):
 
                     list_item = xbmcgui.ListItem(label=datum)
                     list_item.setInfo('video', {'title': title,
-                                                'mediatype': 'video'})
+                                                'mediatype': 'video',
+                                                'comment' : 'test1243555'})
                     list_item.setArt({'thumb': thumb, 'icon': thumb, 'fanart': thumb})
                     list_item.setProperty('IsPlayable', 'true')
                     is_folder = False
